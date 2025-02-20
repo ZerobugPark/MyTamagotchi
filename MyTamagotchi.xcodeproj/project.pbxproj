@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D0A5AA982D678745001A893A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D0A5AA972D678745001A893A /* RxCocoa */; };
+		D0A5AA9A2D678745001A893A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D0A5AA992D678745001A893A /* RxSwift */; };
+		D0A5AA9D2D678751001A893A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0A5AA9C2D678751001A893A /* SnapKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D0A5AA5F2D678557001A893A /* MyTamagotchi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTamagotchi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +42,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0A5AA9D2D678751001A893A /* SnapKit in Frameworks */,
+				D0A5AA9A2D678745001A893A /* RxSwift in Frameworks */,
+				D0A5AA982D678745001A893A /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +87,9 @@
 			);
 			name = MyTamagotchi;
 			packageProductDependencies = (
+				D0A5AA972D678745001A893A /* RxCocoa */,
+				D0A5AA992D678745001A893A /* RxSwift */,
+				D0A5AA9C2D678751001A893A /* SnapKit */,
 			);
 			productName = MyTamagotchi;
 			productReference = D0A5AA5F2D678557001A893A /* MyTamagotchi.app */;
@@ -107,6 +119,10 @@
 			);
 			mainGroup = D0A5AA562D678557001A893A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D0A5AA962D678744001A893A /* XCRemoteSwiftPackageReference "RxSwift" */,
+				D0A5AA9B2D678751001A893A /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D0A5AA602D678557001A893A /* Products */;
 			projectDirPath = "";
@@ -149,9 +165,9 @@
 				INFOPLIST_FILE = MyTamagotchi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -180,9 +196,9 @@
 				INFOPLIST_FILE = MyTamagotchi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -341,6 +357,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D0A5AA962D678744001A893A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.9.0;
+			};
+		};
+		D0A5AA9B2D678751001A893A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D0A5AA972D678745001A893A /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0A5AA962D678744001A893A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		D0A5AA992D678745001A893A /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0A5AA962D678744001A893A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		D0A5AA9C2D678751001A893A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0A5AA9B2D678751001A893A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D0A5AA572D678557001A893A /* Project object */;
 }
