@@ -1,6 +1,6 @@
 //
 //  TamagotchiInfo.swift
-//  MyTamagochi
+//  MyTamagotchi
 //
 //  Created by youngkyun park on 2/21/25.
 //

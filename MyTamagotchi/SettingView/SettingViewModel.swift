@@ -1,6 +1,6 @@
 //
 //  SettingViewModel.swift
-//  MyTamagochi
+//  MyTamagotchi
 //
 //  Created by youngkyun park on 2/20/25.
 //
@@ -66,9 +66,9 @@ extension SettingViewModel {
                                    "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요"]
         
         for i in 0..<nameTitle.count {
-            let tamagochi = TamagotchiInfo(imageIndex: imageIndex[i], nameTitle: nameTitle[i])
+            let tamagotchi = TamagotchiInfo(imageIndex: imageIndex[i], nameTitle: nameTitle[i])
             
-            originalData.append(tamagochi)
+            originalData.append(tamagotchi)
             
         }
         

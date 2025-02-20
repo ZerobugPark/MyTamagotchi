@@ -1,6 +1,6 @@
 //
 //  SettingViewController.swift
-//  MyTamagochi
+//  MyTamagotchi
 //
 //  Created by youngkyun park on 2/20/25.
 //
@@ -43,9 +43,9 @@ final class SettingViewController: UIViewController {
      
 
         output.tamagotchiList.bind(to: settingView.collectionView.rx.items(cellIdentifier: SettingCollectionViewCell.id, cellType: SettingCollectionViewCell.self)) { item , element, cell in
-            print("here")
-            print(element)
-            //cell.setup(text: element)
+            
+            cell.setup(info: element, index: item)
+            
             
         }.disposed(by: disposeBag)
         
@@ -60,9 +60,7 @@ final class SettingViewController: UIViewController {
 extension SettingViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("here22")
         let deviceWidth = view.frame.width
-        
         
         let spacing: CGFloat = 10.0
         let inset: CGFloat = 8

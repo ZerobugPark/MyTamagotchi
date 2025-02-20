@@ -1,6 +1,6 @@
 //
 //  SettingCollectionViewCell.swift
-//  MyTamagochi
+//  MyTamagotchi
 //
 //  Created by youngkyun park on 2/20/25.
 //
@@ -57,20 +57,19 @@ class SettingCollectionViewCell: BaseCollectionViewCell {
     func setup(info: TamagotchiInfo, index: Int) {
         
         
-//        switch index {
-//        case 0:
-//            tamagotchiImage.image = ImageSet.tamagochiImageList[index][0]
-//        case 1:
-//        case 2:
-//        default
-//            
-//        }
+        switch index {
+        case 0:
+            tamagotchiImage.image = ImageSet.tamagotchiImageList[0][info.imageIndex]
+        case 1:
+            tamagotchiImage.image = ImageSet.tamagotchiImageList[1][info.imageIndex]
+        case 2:
+            tamagotchiImage.image = ImageSet.tamagotchiImageList[2][info.imageIndex]
+        default:
+            tamagotchiImage.image = ImageSet.noImage
+            
+        }
         
-        
-        
-        
-        
-       // title.text = info.nameTitle[index]
+        title.text = info.nameTitle
         
         contentView.layoutIfNeeded()
     }

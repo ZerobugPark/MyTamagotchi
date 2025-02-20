@@ -1,6 +1,6 @@
 //
 //  CustomImageView.swift
-//  MyTamagochi
+//  MyTamagotchi
 //
 //  Created by youngkyun park on 2/20/25.
 //
