@@ -19,10 +19,10 @@ final class PopupViewModel: BaseViewModel {
     }
     
     struct Output {
-        let info: Observable<(Tamagotchi, Bool)>
+        let info: Observable<(TamagotchiInfo, Bool)>
     }
 
-    var tamagotchiInfo: (Tamagotchi, Bool)?
+    var tamagotchiInfo: (TamagotchiInfo, Bool)?
     
     
 
@@ -40,23 +40,23 @@ final class PopupViewModel: BaseViewModel {
   
     
     deinit {
-        print("SettingViewModel DeInit")
+        print("PopupViewModel DeInit")
     }
 }
 
 // MARK: - Custom Observable
 extension PopupViewModel {
     
-    private func getInfo(info: (Tamagotchi, Bool)?) -> Observable<(Tamagotchi, Bool)> {
+    private func getInfo(info: (TamagotchiInfo, Bool)?) -> Observable<(TamagotchiInfo, Bool)> {
         
-        return Observable<(Tamagotchi, Bool)>.create { value in
+        return Observable<(TamagotchiInfo, Bool)>.create { value in
             
             if let tamagotchi = info {
                 value.onNext(tamagotchi)
                 value.onCompleted()
             } else {
-                var info = Tamagotchi(imageIndex: 0, nameTitle: "잘못된 값")
-                let tamagotchi: (Tamagotchi, Bool) = (info, true)
+                let info = TamagotchiInfo(nameTitle: "Unknown", image: ImageSet.noImage)
+                let tamagotchi: (TamagotchiInfo, Bool) = (info, true)
                 value.onNext(tamagotchi)
                 value.onCompleted()
             }

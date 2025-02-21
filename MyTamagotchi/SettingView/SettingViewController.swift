@@ -55,8 +55,32 @@ final class SettingViewController: UIViewController {
             
             let vc = PopupViewController()
             
-            vc.modalPresentationStyle = .overCurrentContext
+            var status = false
+            var image: UIImage
             
+            switch value.0.item {
+            case 0:
+                image = ImageSet.tamagotchiImageList[value.0.item][value.1.imageIndex]
+                status = false
+            case 1:
+                image = ImageSet.tamagotchiImageList[value.0.item][value.1.imageIndex]
+                status = false
+            case 2:
+                image = ImageSet.tamagotchiImageList[value.0.item][value.1.imageIndex]
+                status = false
+            default:
+                image = ImageSet.noImage
+                status = true
+            }
+            
+            
+            let nameTitle = value.1.nameTitle
+            let tamagotchi = TamagotchiInfo(nameTitle: nameTitle, image: image)
+            
+            vc.viewModel.tamagotchiInfo = (tamagotchi, status)
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .crossDissolve
+            print("here")
         
             owner.present(vc, animated: true)
         
