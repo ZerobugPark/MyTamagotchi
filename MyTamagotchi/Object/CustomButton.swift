@@ -30,14 +30,14 @@ final class CustomButton: UIButton {
         
     }
     
-    //    convenience init(title: String){
-    //        self.init()
-    //        configuration = .BasicButtonStyle(title: title)
-    //
-    //        titleLabel?.font = .systemFont(ofSize: 16)
-    //        clipsToBounds = true
-    //
-    //     }
+    convenience init(title: String, image: String){
+        self.init()
+        configuration = .imageButtonStyle(title: title, image: image)
+        
+        titleLabel?.font = .systemFont(ofSize: 16)
+        clipsToBounds = true
+        
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -58,17 +58,31 @@ extension CustomButton.Configuration {
         configuration.baseBackgroundColor = TamagotchiColor.background // 배경 컬러
         
         
-        
-        // 클릭(하이라이트) 상태일 때 배경색 변경
-        //configuration.background.highlightedBackgroundColor =  // 클릭했을 때 배경색 변경
-        
-        
-        
-        
         configuration.background.strokeWidth =  0 // 테두리 굵기
         configuration.cornerStyle = .large
         
         configuration.buttonSize = .large
+        
+        return configuration
+    }
+    
+    static func imageButtonStyle(title: String, image: String) -> UIButton.Configuration {
+        
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = title
+        configuration.titleAlignment = .leading
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 8, weight: .thin)
+        configuration.image = UIImage(systemName: image, withConfiguration: imageConfig)
+        
+        configuration.baseForegroundColor = TamagotchiColor.basic
+        configuration.baseBackgroundColor = TamagotchiColor.background
+        
+        configuration.background.strokeColor =  TamagotchiColor.basic
+        configuration.background.strokeWidth = 1
+        
+        configuration.cornerStyle = .large
+        configuration.buttonSize = .medium
+        configuration.imagePadding = 5
         
         return configuration
     }
