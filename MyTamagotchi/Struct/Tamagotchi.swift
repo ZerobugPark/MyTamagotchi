@@ -19,5 +19,6 @@ struct Tamagotchi {
 struct TamagotchiInfo {
     let nameTitle: String
     let image: UIImage
+    let description: String
     
 }

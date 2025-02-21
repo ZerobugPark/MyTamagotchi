@@ -26,12 +26,8 @@ final class PopupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        //view.backgroundColor = .black
         bind()
-        
-        
+
     }
     
     
@@ -40,32 +36,23 @@ final class PopupViewController: UIViewController {
         let input = PopupViewModel.Input()
         let output = viewModel.transform(input: input)
         
-        
-        //        output.info.bind(with: self) { owner, value in
-        //
-        //
-        //        }.disposed(by: disposeBag)
-        
         output.info
             .map {(tamagotchi: $0, status: $1) }
-            .subscribe(with: self) { owner, value in
-                
+            .bind(with: self) { owner, value in
                 owner.popupView.tamagotchiImage.image = value.tamagotchi.image
                 owner.popupView.title.text = value.tamagotchi.nameTitle
-                
+                owner.popupView.descriptionLabel.text = value.tamagotchi.description
                 owner.popupView.confirmButton.isHidden = value.status
-            
-                
-                
-            } onError: { owner, error in
-                print("onError")
-            } onCompleted: { owner in
-                print("onCompleted")
-            } onDisposed: { owner in
-                print("onDisposed")
             }.disposed(by: disposeBag)
+            
         
-        
+        popupView.confirmButton.rx.tap.bind(with: self) { owner, _ in
+            
+        }.disposed(by: disposeBag)
+            
+            
+            
+     
         popupView.cancelButton.rx.tap.bind(with: self) { owner, _ in
             
             owner.dismiss(animated: true)

@@ -15,12 +15,11 @@ final class PopupView: BaseView {
     private let view = CustomView(radius: 5.0, color: TamagotchiColor.background)
     private let lineView = CustomView(color: TamagotchiColor.basic)
     private let subLineView = CustomView(color: TamagotchiColor.basic)
-    private let descriptionLabel = CustomLabel(numberOfLine: 0)
     private let stackView = UIStackView()
     
     let tamagotchiImage = CustomImageView()
     let title = CustomLabel(boldStyle: true, fontSize: 15)
-    
+    let descriptionLabel = CustomLabel(numberOfLine: 0)
     let cancelButton = CustomButton(title: "취소")
     let confirmButton = CustomButton(title: "확인")
     
@@ -110,13 +109,7 @@ final class PopupView: BaseView {
         stackView.distribution = .fillEqually
         
         
-        descriptionLabel.text = """
-                                sndkandksamdklsdsadadsadamdklamkdlmkdlmakldmskaldml
-                                dksamdklsdsadadsadamdklamkdlmkdlmakldmskaldml
-                                andksamdklsdsadadsadamdklamkdlmkdlmakldmskaldml
-                                andksamdklsdsadadsadamdklamkdlmkdlmakldmskaldml
-                                andksamdklsdsadadsadamdklamkdlmkdlmakldmskaldml
-                                """
+
         
         DispatchQueue.main.async {
             self.tamagotchiImage.layer.cornerRadius = self.tamagotchiImage.frame.width / 2
