@@ -9,7 +9,7 @@ import UIKit
 
 final class CustomLabel: UILabel {
     
-    private let padding = UIEdgeInsets(top: 4.0, left: 4.0, bottom: 4.0, right: 4.0)
+    private let padding = UIEdgeInsets(top: 6.0, left: 6.0, bottom: 6.0, right: 6.0)
     
     init() {
         super.init(frame: .zero)
@@ -24,6 +24,15 @@ final class CustomLabel: UILabel {
         layer.borderColor = TamagotchiColor.basic.cgColor
         layer.cornerRadius = 2
         clipsToBounds = true
+        
+    }
+    
+    convenience init(numberOfLine: Int) {
+        self.init()
+        
+        textColor = TamagotchiColor.basic
+        textAlignment = .center
+        numberOfLines = numberOfLine
         
     }
     
