@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 struct Tamagotchi {
@@ -16,7 +17,7 @@ struct Tamagotchi {
 
 
 struct TamagotchiInfo {
-    let tamagotchi: Tamagotchi
-    let cellIndex: Int
+    let nameTitle: String
+    let image: UIImage
     
 }
