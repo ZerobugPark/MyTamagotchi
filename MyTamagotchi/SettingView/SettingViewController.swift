@@ -37,12 +37,12 @@ final class SettingViewController: UIViewController {
     
     private func bind() {
         
-        let input = SettingViewModel.Input()
+        let input = SettingViewModel.Input(itemSelected: settingView.collectionView.rx.itemSelected)
         
         let output = viewModel.transform(input: input)
      
 
-        output.tamagotchiList.bind(to: settingView.collectionView.rx.items(cellIdentifier: SettingCollectionViewCell.id, cellType: SettingCollectionViewCell.self)) { item , element, cell in
+        output.tamagotchiList.asDriver().drive( settingView.collectionView.rx.items(cellIdentifier: SettingCollectionViewCell.id, cellType: SettingCollectionViewCell.self)) { item , element, cell in
             
             cell.setup(info: element, index: item)
             
@@ -51,45 +51,15 @@ final class SettingViewController: UIViewController {
         
         settingView.collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         
-        Observable.zip(settingView.collectionView.rx.itemSelected, settingView.collectionView.rx.modelSelected(Tamagotchi.self)).bind(with: self, onNext: { owner, value in
-            
+ 
+        output.tamagotchiInfo.bind(with: self) { owner, value in
             let vc = PopupViewController()
-            
-            var status = false
-            var image: UIImage
-            
-            switch value.0.item {
-            case 0:
-                image = ImageSet.tamagotchiImageList[value.0.item][value.1.imageIndex]
-                status = false
-            case 1:
-                image = ImageSet.tamagotchiImageList[value.0.item][value.1.imageIndex]
-                status = false
-            case 2:
-                image = ImageSet.tamagotchiImageList[value.0.item][value.1.imageIndex]
-                status = false
-            default:
-                image = ImageSet.noImage
-                status = true
-            }
-            
-            
-            let nameTitle = value.1.nameTitle
-            let tamagotchi = TamagotchiInfo(nameTitle: nameTitle, image: image)
-            
-            vc.viewModel.tamagotchiInfo = (tamagotchi, status)
+            vc.viewModel.tamagotchiInfo = value
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
-            print("here")
-        
             owner.present(vc, animated: true)
+        }.disposed(by: disposeBag)
         
-            
-        }).disposed(by: disposeBag)
-        
-        
-       
-  
     }
     
 
