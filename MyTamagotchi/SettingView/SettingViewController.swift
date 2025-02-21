@@ -50,6 +50,21 @@ final class SettingViewController: UIViewController {
         }.disposed(by: disposeBag)
         
         settingView.collectionView.rx.setDelegate(self).disposed(by: disposeBag)
+        
+        Observable.zip(settingView.collectionView.rx.itemSelected, settingView.collectionView.rx.modelSelected(TamagotchiInfo.self)).bind(with: self, onNext: { owner, value in
+            
+            let vc = PopupViewController()
+            
+            vc.modalPresentationStyle = .overCurrentContext
+            
+        
+            owner.present(vc, animated: true)
+        
+            
+        }).disposed(by: disposeBag)
+        
+        
+       
   
     }
     
@@ -67,7 +82,8 @@ extension SettingViewController: UICollectionViewDelegateFlowLayout {
         let imageCount: CGFloat = 3
         
         let objectWidth = (deviceWidth - ((spacing * (imageCount - 1)) + (inset * 2))) / imageCount
-        let objectHeight = objectWidth
+        let bottomPaddingMargin = 6.0
+        let objectHeight = objectWidth + bottomPaddingMargin
         
         
         return CGSize(width: objectWidth, height: objectHeight)

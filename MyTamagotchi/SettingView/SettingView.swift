@@ -33,6 +33,9 @@ final class SettingView: BaseView {
     
     private func createCollectionViewLayout() -> UICollectionViewLayout {
         
+        self.backgroundColor = TamagotchiColor.background
+        
+        
         let layout = UICollectionViewFlowLayout()
         
         let spacing: CGFloat = 10

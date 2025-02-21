@@ -12,7 +12,7 @@ class SettingCollectionViewCell: BaseCollectionViewCell {
     static let id = "SettingCollectionViewCell"
     
     let tamagotchiImage = CustomImageView()
-    let title = CustomLabel(boldStyle: false, fontSize: 15)
+    let title = CustomLabel(boldStyle: true, fontSize: 13)
     
     override func configureHierarchy() {
         contentView.addSubview(tamagotchiImage)
@@ -30,10 +30,9 @@ class SettingCollectionViewCell: BaseCollectionViewCell {
         }
         
         title.snp.makeConstraints { make in
-            make.top.equalTo(tamagotchiImage.snp.bottom).offset(4)
+            make.top.equalTo(tamagotchiImage.snp.bottom).offset(8)
             make.centerX.equalTo(contentView)
-            make.width.greaterThanOrEqualTo(30)
-            make.height.equalTo(18)
+            
             
         }
         
