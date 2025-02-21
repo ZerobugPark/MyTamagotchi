@@ -13,7 +13,7 @@ final class CustomImageView: UIImageView {
         super.init(frame: .zero)
      
         layer.borderColor = TamagotchiColor.basic.cgColor
-        layer.borderWidth = 5
+        layer.borderWidth = 2
         clipsToBounds = true
         contentMode = .scaleToFill
     }
