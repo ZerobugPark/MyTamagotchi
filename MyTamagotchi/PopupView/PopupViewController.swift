@@ -48,6 +48,14 @@ final class PopupViewController: UIViewController {
         
         popupView.confirmButton.rx.tap.bind(with: self) { owner, _ in
             
+            
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let window = windowScene.windows.first else { return }
+            
+            //여기서 현재 선택된 데이터 저장하는 코드 추가 필요
+            
+            window.rootViewController = UINavigationController(rootViewController: PlayViewController())
+            window.makeKeyAndVisible()
+            
         }.disposed(by: disposeBag)
             
             
