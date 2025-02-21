@@ -14,7 +14,8 @@ final class PopupView: BaseView {
     
     private let view = CustomView(radius: 5.0, color: TamagotchiColor.background)
     private let lineView = CustomView(color: TamagotchiColor.basic)
-    private let subLineView = CustomView(color: TamagotchiColor.basic)
+    private let horizontalLineView = CustomView(color: TamagotchiColor.basic)
+    private let verticalLineView = CustomView(color: TamagotchiColor.basic)
     private let stackView = UIStackView()
     
     let tamagotchiImage = CustomImageView()
@@ -31,9 +32,10 @@ final class PopupView: BaseView {
         view.addSubview(lineView)
         view.addSubview(descriptionLabel)
         
-        view.addSubview(subLineView)
+        view.addSubview(horizontalLineView)
         view.addSubview(stackView)
         stackView.addArrangedSubview(cancelButton)
+        stackView.addArrangedSubview(verticalLineView)
         stackView.addArrangedSubview(confirmButton)
     }
     
@@ -68,10 +70,10 @@ final class PopupView: BaseView {
             make.top.equalTo(lineView.snp.bottom).offset(16)
             make.width.equalTo(self.snp.width).multipliedBy(1.0 / 1.5)
             make.centerX.equalTo(view)
-            make.bottom.lessThanOrEqualTo(subLineView.snp.top).offset(-8)
+            make.bottom.lessThanOrEqualTo(horizontalLineView.snp.top).offset(-8)
         }
         
-        subLineView.snp.makeConstraints { make in
+        horizontalLineView.snp.makeConstraints { make in
             make.top.equalTo(stackView.snp.top).offset(-1)
             make.width.equalToSuperview()
             make.height.equalTo(1)
@@ -81,8 +83,13 @@ final class PopupView: BaseView {
             make.bottom.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
         }
-        
+            
         cancelButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
+        
+        verticalLineView.snp.makeConstraints { make in
+            make.width.equalTo(0.5)
             make.height.equalTo(50)
         }
         
@@ -106,18 +113,12 @@ final class PopupView: BaseView {
     
         
         stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         
-        
-
-        
+    
         DispatchQueue.main.async {
             self.tamagotchiImage.layer.cornerRadius = self.tamagotchiImage.frame.width / 2
         }
-        
-        
-        tamagotchiImage.image = ImageSet.tamagotchiImageList[0][0]
-        title.text = "테스트입니다"
     }
     
 }
