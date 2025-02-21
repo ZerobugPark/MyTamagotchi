@@ -8,8 +8,15 @@
 import Foundation
 
 
-struct TamagotchiInfo {
+struct Tamagotchi {
     let imageIndex: Int
     let nameTitle: String
+    
+}
+
+
+struct TamagotchiInfo {
+    let tamagotchi: Tamagotchi
+    let cellIndex: Int
     
 }

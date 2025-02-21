@@ -12,33 +12,23 @@ import RxSwift
 import RxCocoa
 
 final class SettingViewModel: BaseViewModel {
-    
-    
-    
-    
+        
     struct Input {
         
     }
     
     struct Output {
-        let tamagotchiList: BehaviorRelay<[TamagotchiInfo]>
+        let tamagotchiList: BehaviorRelay<[Tamagotchi]>
+        
     }
-    
-   
-  
-    private var originalData: [TamagotchiInfo] = []
-  
-    
-    
-    
-    
+
+    private var originalData: [Tamagotchi] = []
+
     init() {
         print("SettingViewModel Init")
         
         loadData()
     }
-    
-    
     
     func transform(input: Input) -> Output {
         
@@ -66,7 +56,7 @@ extension SettingViewModel {
                                    "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요"]
         
         for i in 0..<nameTitle.count {
-            let tamagotchi = TamagotchiInfo(imageIndex: imageIndex[i], nameTitle: nameTitle[i])
+            let tamagotchi = Tamagotchi(imageIndex: imageIndex[i], nameTitle: nameTitle[i])
             
             originalData.append(tamagotchi)
             

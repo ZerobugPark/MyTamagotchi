@@ -53,7 +53,7 @@ class SettingCollectionViewCell: BaseCollectionViewCell {
     
     }
     
-    func setup(info: TamagotchiInfo, index: Int) {
+    func setup(info: Tamagotchi, index: Int) {
         
         
         switch index {

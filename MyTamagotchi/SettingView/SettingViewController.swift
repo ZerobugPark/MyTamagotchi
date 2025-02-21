@@ -51,7 +51,7 @@ final class SettingViewController: UIViewController {
         
         settingView.collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         
-        Observable.zip(settingView.collectionView.rx.itemSelected, settingView.collectionView.rx.modelSelected(TamagotchiInfo.self)).bind(with: self, onNext: { owner, value in
+        Observable.zip(settingView.collectionView.rx.itemSelected, settingView.collectionView.rx.modelSelected(Tamagotchi.self)).bind(with: self, onNext: { owner, value in
             
             let vc = PopupViewController()
             
