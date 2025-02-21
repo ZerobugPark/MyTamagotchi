@@ -15,7 +15,6 @@ class BaseView: UIView {
         configureLayout()
         configureView()
        
-        self.backgroundColor = TamagotchiColor.background
     }
     
     func configureHierarchy() { }
