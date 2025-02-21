@@ -30,6 +30,7 @@ final class CustomLabel: UILabel {
     convenience init(numberOfLine: Int) {
         self.init()
         
+        font = .systemFont(ofSize: 13)
         textColor = TamagotchiColor.basic
         textAlignment = .center
         numberOfLines = numberOfLine
