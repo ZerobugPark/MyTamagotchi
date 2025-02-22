@@ -7,15 +7,60 @@
 
 import UIKit
 
-class PlayViewController: UIViewController {
+import RxSwift
+import RxCocoa
+import RxGesture
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        view.backgroundColor = .red
+final class PlayViewController: UIViewController {
+
+    
+    private let playView = PlayView()
+    
+    
+    let disposeBag = DisposeBag()
+    
+   
+    
+    override func loadView() {
+        view = playView
     }
     
 
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        bind()
+        configurationNavigation()
+    }
+    
+    
+    
+    private func bind() {
+        view.rx.tapGesture().bind(with: self) { owner, _ in
+            owner.view.endEditing(true)
+        }.disposed(by: disposeBag)
+        
+        
+        
+    }
+    
+    private func configurationNavigation() {
+   
+        let rightButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: nil, action: nil)
+        navigationItem.title = "test"
+        navigationItem.backButtonTitle = ""
+        navigationItem.rightBarButtonItem = rightButton
+        
+        rightButton.rx.tap.bind(with: self) { owner, _ in
+            
+            let vc = DetailSettingViewController()
+            
+            
+            owner.navigationController?.pushViewController(vc, animated: true)
+            
+            
+        }.disposed(by: disposeBag)
+    }
 
 }

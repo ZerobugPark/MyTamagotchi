@@ -28,7 +28,9 @@ final class PopupViewController: UIViewController {
         super.viewDidLoad()
         bind()
 
+  
     }
+    
     
     
     private func bind() {
@@ -68,9 +70,7 @@ final class PopupViewController: UIViewController {
         }.disposed(by: disposeBag)
     }
     
-    
-    
-    
+
 }
 
 

@@ -27,19 +27,22 @@ final class PopupView: BaseView {
     override func configureHierarchy() {
         
         addSubview(view)
-        view.addSubview(tamagotchiImage)
-        view.addSubview(title)
-        view.addSubview(lineView)
-        view.addSubview(descriptionLabel)
+
+        [tamagotchiImage, title, lineView, descriptionLabel].forEach {
+            view.addSubview($0)
+        }
         
         view.addSubview(horizontalLineView)
         view.addSubview(stackView)
-        stackView.addArrangedSubview(cancelButton)
-        stackView.addArrangedSubview(verticalLineView)
-        stackView.addArrangedSubview(confirmButton)
+        
+        [verticalLineView, confirmButton].forEach {
+            stackView.addArrangedSubview($0)
+        }
+
     }
     
     override func configureLayout() {
+
         
         view.snp.makeConstraints { make in
             make.center.equalTo(self.safeAreaLayoutGuide)

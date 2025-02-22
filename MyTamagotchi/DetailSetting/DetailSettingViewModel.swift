@@ -11,7 +11,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class DetailSettingViewModel: BaseViewModel {
+final class DetailSettingViewModel: BaseViewModel {
     
     struct Input {
         let seletecd: SharedSequence<DriverSharingStrategy, IndexPath>
@@ -53,6 +53,7 @@ class DetailSettingViewModel: BaseViewModel {
             switch indexPath.row {
             case 0:
                 changedName.accept("텍스트")
+                
                 
             case 1:
                 changedTamagotchi.accept("텍스트")

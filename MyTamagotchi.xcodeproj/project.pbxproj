@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D06AE1032D68E985005F4636 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = D06AE1022D68E985005F4636 /* RxGesture */; };
 		D0A5AA982D678745001A893A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D0A5AA972D678745001A893A /* RxCocoa */; };
 		D0A5AA9A2D678745001A893A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D0A5AA992D678745001A893A /* RxSwift */; };
 		D0A5AA9D2D678751001A893A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0A5AA9C2D678751001A893A /* SnapKit */; };
@@ -44,6 +45,7 @@
 			files = (
 				D0A5AA9D2D678751001A893A /* SnapKit in Frameworks */,
 				D0A5AA9A2D678745001A893A /* RxSwift in Frameworks */,
+				D06AE1032D68E985005F4636 /* RxGesture in Frameworks */,
 				D0A5AA982D678745001A893A /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,6 +92,7 @@
 				D0A5AA972D678745001A893A /* RxCocoa */,
 				D0A5AA992D678745001A893A /* RxSwift */,
 				D0A5AA9C2D678751001A893A /* SnapKit */,
+				D06AE1022D68E985005F4636 /* RxGesture */,
 			);
 			productName = MyTamagotchi;
 			productReference = D0A5AA5F2D678557001A893A /* MyTamagotchi.app */;
@@ -122,6 +125,7 @@
 			packageReferences = (
 				D0A5AA962D678744001A893A /* XCRemoteSwiftPackageReference "RxSwift" */,
 				D0A5AA9B2D678751001A893A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D06AE1012D68E985005F4636 /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D0A5AA602D678557001A893A /* Products */;
@@ -161,6 +165,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9ZR9M5J9M6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyTamagotchi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -192,6 +197,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9ZR9M5J9M6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyTamagotchi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -359,6 +365,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D06AE1012D68E985005F4636 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
 		D0A5AA962D678744001A893A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -378,6 +392,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D06AE1022D68E985005F4636 /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D06AE1012D68E985005F4636 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
+		};
 		D0A5AA972D678745001A893A /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D0A5AA962D678744001A893A /* XCRemoteSwiftPackageReference "RxSwift" */;

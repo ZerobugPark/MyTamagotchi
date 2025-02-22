@@ -39,6 +39,7 @@ final class CustomButton: UIButton {
         
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -80,8 +81,8 @@ extension CustomButton.Configuration {
         configuration.background.strokeColor =  TamagotchiColor.basic
         configuration.background.strokeWidth = 1
         
-        configuration.cornerStyle = .large
-        configuration.buttonSize = .medium
+        configuration.cornerStyle = .medium
+        configuration.buttonSize = .small
         configuration.imagePadding = 5
         
         return configuration

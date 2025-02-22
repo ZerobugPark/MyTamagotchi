@@ -13,18 +13,23 @@ final class CustomTextField: UITextField {
     
     init() {
         super.init(frame: .zero)
+        
+        layer.borderWidth = 0
+        textColor = TamagotchiColor.basic
+        font = .systemFont(ofSize: 13)
     }
     
     
     convenience init(placeholderText: String) {
         self.init()
         
-        layer.borderWidth = 0
         placeholder = placeholderText
         textAlignment = .center
-        textColor = TamagotchiColor.basic
         keyboardType = .numberPad
+  
     }
+    
+    
     
     
     

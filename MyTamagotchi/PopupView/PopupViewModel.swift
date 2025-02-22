@@ -20,6 +20,7 @@ final class PopupViewModel: BaseViewModel {
     
     struct Output {
         let info: Observable<(TamagotchiInfo, Bool)>
+        
     }
 
     var tamagotchiInfo: (TamagotchiInfo, Bool)?
@@ -27,7 +28,7 @@ final class PopupViewModel: BaseViewModel {
     
 
     init() {
-        print("SettingViewModel Init")
+        print("PopupViewModel Init")
     }
     
     func transform(input: Input) -> Output {

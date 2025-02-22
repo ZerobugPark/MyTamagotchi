@@ -13,13 +13,14 @@ final class CustomLabel: UILabel {
     
     init() {
         super.init(frame: .zero)
+        textColor = TamagotchiColor.basic
+        textAlignment = .center
     }
     
     convenience init(boldStyle: Bool, fontSize: CGFloat) {
         self.init()
         font = boldStyle ? .boldSystemFont(ofSize: fontSize) : .systemFont(ofSize: fontSize)
-        textColor = TamagotchiColor.basic
-        textAlignment = .center
+        
         layer.borderWidth = 1
         layer.borderColor = TamagotchiColor.basic.cgColor
         layer.cornerRadius = 2
@@ -31,10 +32,14 @@ final class CustomLabel: UILabel {
         self.init()
         
         font = .systemFont(ofSize: 13)
-        textColor = TamagotchiColor.basic
-        textAlignment = .center
         numberOfLines = numberOfLine
         
+    }
+    
+    convenience init(boldStyle: Bool) {
+        self.init()
+        font = boldStyle ? .boldSystemFont(ofSize: 13) : .systemFont(ofSize: 13)
+  
     }
     
     // 텍스트 내의 패딩

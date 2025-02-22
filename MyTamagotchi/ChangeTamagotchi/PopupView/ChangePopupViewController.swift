@@ -7,23 +7,59 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 class ChangePopupViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    private let popupView = PopupView()
+    
+    var viewModel = ChangePopupViewModel()
+    
+    private let disposeBag = DisposeBag()
+    
+    override func loadView() {
+        view = popupView
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bind()
+       
     }
-    */
+    
+    private func bind() {
+        
+        let input = ChangePopupViewModel.Input()
+        let output = viewModel.transform(input: input)
+        
+        output.info
+            .map {(tamagotchi: $0, status: $1) }
+            .bind(with: self) { owner, value in
+                owner.popupView.tamagotchiImage.image = value.tamagotchi.image
+                owner.popupView.title.text = value.tamagotchi.nameTitle
+                owner.popupView.descriptionLabel.text = value.tamagotchi.description
+                owner.popupView.confirmButton.isHidden = value.status
+            }.disposed(by: disposeBag)
+            
+        
+        popupView.confirmButton.rx.tap.bind(with: self) { owner, _ in
+            
+       
+        }.disposed(by: disposeBag)
+            
+            
+            
+     
+        popupView.cancelButton.rx.tap.bind(with: self) { owner, _ in
+            
+            owner.dismiss(animated: true)
+            
+        }.disposed(by: disposeBag)
+    }
 
+
+    
+    
 }

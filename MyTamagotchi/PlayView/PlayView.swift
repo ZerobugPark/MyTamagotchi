@@ -147,7 +147,7 @@ final class PlayView: BaseView {
                                 dmsakldmsakldmsaklmdkslmdkals
                                 """
                                 
-        self.keyboardLayoutGuide.followsUndockedKeyboard = true
+        
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
         
@@ -163,16 +163,5 @@ final class PlayView: BaseView {
         }
     }
     
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-//        self.snp.makeConstraints { make in
-//            make.top.equalTo(self.safeAreaLayoutGuide)
-//            make.horizontalEdges.equalTo(self)
-//            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).priority(.low)
-//            make.bottom.equalTo(self.keyboardLayoutGuide.snp.top).priority(.high)
-//            make.edges.equalToSuperview()
-        }
-        
     
 }

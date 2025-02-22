@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-class DetailSettingViewController: UIViewController {
+final class DetailSettingViewController: UIViewController {
 
     
     private let detailView = DetailSettingView()
@@ -69,6 +69,23 @@ class DetailSettingViewController: UIViewController {
             
         }.disposed(by: disposeBag)
 
+        
+        output.changedName.asDriver(onErrorJustReturn: "").drive(with: self) { owner, value in
+            let vc = ChangeNameViewController()
+            
+            owner.navigationController?.pushViewController(vc, animated: true)
+            
+        }.disposed(by: disposeBag)
+        
+        
+        output.changedTamagotchi.asDriver(onErrorJustReturn: "").drive(with: self) { owner, value in
+            
+            let vc = ChangeTamagotchiViewController()
+            
+            owner.navigationController?.pushViewController(vc, animated: true)
+         
+        }.disposed(by: disposeBag)
+        
         
         output.resetData.asDriver(onErrorJustReturn: []).drive(with: self) { owner, value in
             
