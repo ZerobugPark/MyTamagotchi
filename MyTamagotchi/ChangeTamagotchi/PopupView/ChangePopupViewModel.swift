@@ -57,7 +57,7 @@ extension ChangePopupViewModel {
                 value.onCompleted()
             } else {
                 let description = "오류입니다."
-                let info = TamagotchiInfo(nameTitle: "Unknown", image: ImageSet.noImage, description: description)
+                let info = TamagotchiInfo(nameTitle: "Unknown", image: ImageSet.noImage, description: description, character: 0)
                 let tamagotchi: (TamagotchiInfo, Bool) = (info, true)
                 value.onNext(tamagotchi)
                 value.onCompleted()

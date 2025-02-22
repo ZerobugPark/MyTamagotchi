@@ -19,6 +19,9 @@ final class PopupViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    
+    let saveData = PublishRelay<Void>()
+    
     override func loadView() {
         view = popupView
     }
@@ -31,16 +34,15 @@ final class PopupViewController: UIViewController {
   
     }
     
-    
-    
     private func bind() {
         
-        let input = PopupViewModel.Input()
+        let input = PopupViewModel.Input(saveData: saveData)
         let output = viewModel.transform(input: input)
         
         output.info
             .map {(tamagotchi: $0, status: $1) }
             .bind(with: self) { owner, value in
+                
                 owner.popupView.tamagotchiImage.image = value.tamagotchi.image
                 owner.popupView.title.text = value.tamagotchi.nameTitle
                 owner.popupView.descriptionLabel.text = value.tamagotchi.description
@@ -53,7 +55,7 @@ final class PopupViewController: UIViewController {
             
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let window = windowScene.windows.first else { return }
             
-            //여기서 현재 선택된 데이터 저장하는 코드 추가 필요
+            owner.saveData.accept(())
             
             window.rootViewController = UINavigationController(rootViewController: PlayViewController())
             window.makeKeyAndVisible()

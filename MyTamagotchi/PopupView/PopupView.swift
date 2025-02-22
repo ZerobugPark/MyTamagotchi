@@ -21,8 +21,8 @@ final class PopupView: BaseView {
     let tamagotchiImage = CustomImageView()
     let title = CustomLabel(boldStyle: true, fontSize: 15)
     let descriptionLabel = CustomLabel(numberOfLine: 0)
-    let cancelButton = CustomButton(title: "취소")
-    let confirmButton = CustomButton(title: "확인")
+    let cancelButton = CustomButton(title: "돌아가기")
+    let confirmButton = CustomButton(title: "시작하기")
     
     override func configureHierarchy() {
         
@@ -35,7 +35,7 @@ final class PopupView: BaseView {
         view.addSubview(horizontalLineView)
         view.addSubview(stackView)
         
-        [verticalLineView, confirmButton].forEach {
+        [cancelButton, verticalLineView, confirmButton].forEach {
             stackView.addArrangedSubview($0)
         }
 

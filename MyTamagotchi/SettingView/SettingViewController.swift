@@ -51,9 +51,10 @@ final class SettingViewController: UIViewController {
         
         settingView.collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         
- 
+        
         output.tamagotchiInfo.bind(with: self) { owner, value in
             let vc = PopupViewController()
+            
             vc.viewModel.tamagotchiInfo = value
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve

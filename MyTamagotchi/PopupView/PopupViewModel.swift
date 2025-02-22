@@ -15,17 +15,18 @@ final class PopupViewModel: BaseViewModel {
     
     
     struct Input {
-        
+        let saveData: PublishRelay<Void>
     }
     
     struct Output {
         let info: Observable<(TamagotchiInfo, Bool)>
+
         
     }
 
     var tamagotchiInfo: (TamagotchiInfo, Bool)?
     
-    
+    private let disposeBag = DisposeBag()
 
     init() {
         print("PopupViewModel Init")
@@ -34,6 +35,13 @@ final class PopupViewModel: BaseViewModel {
     func transform(input: Input) -> Output {
      
         let info = getInfo(info: tamagotchiInfo)
+        
+        input.saveData.asDriver(onErrorJustReturn: ()).drive(with: self) { owner, _ in
+            
+            UserDefaultManager.isSave = true
+            UserDefaultManager.character = owner.tamagotchiInfo!.0.character
+            
+        }.disposed(by: disposeBag)
         
         return Output(info: info)
     }
@@ -57,7 +65,7 @@ extension PopupViewModel {
                 value.onCompleted()
             } else {
                 let description = "오류입니다."
-                let info = TamagotchiInfo(nameTitle: "Unknown", image: ImageSet.noImage, description: description)
+                let info = TamagotchiInfo(nameTitle: "Unknown", image: ImageSet.noImage, description: description, character: 0)
                 let tamagotchi: (TamagotchiInfo, Bool) = (info, true)
                 value.onNext(tamagotchi)
                 value.onCompleted()

@@ -32,7 +32,12 @@ final class PlayViewController: UIViewController {
         
         bind()
         configurationNavigation()
+        
+        print(UserDefaultManager.character)
+        print(UserDefaultManager.isSave)
     }
+    
+    
     
     
     
