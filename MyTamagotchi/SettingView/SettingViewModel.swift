@@ -93,13 +93,10 @@ extension SettingViewModel {
     private func loadData() {
         
         let imageIndex = [8,8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        let nameTitle = ["따끔따금 다마고치" , "방실방실 다마고치", "반짝반짝 다마고치", "준비중이에요", "준비중이에요",
-                                   "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요",
-                                   "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요",
-                                   "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요"]
+
         
-        for i in 0..<nameTitle.count {
-            let tamagotchi = Tamagotchi(imageIndex: imageIndex[i], nameTitle: nameTitle[i])
+        for i in 0..<TamagotchiName.nameTitle.count {
+            let tamagotchi = Tamagotchi(imageIndex: imageIndex[i], nameTitle: TamagotchiName.nameTitle[i])
             
             originalData.append(tamagotchi)
             

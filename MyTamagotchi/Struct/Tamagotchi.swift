@@ -24,6 +24,13 @@ struct TamagotchiInfo {
     
 }
 
+enum  TamagotchiName {
+    static let nameTitle = ["따끔따금 다마고치" , "방실방실 다마고치", "반짝반짝 다마고치", "준비중이에요", "준비중이에요",
+                               "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요",
+                               "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요",
+                               "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요", "준비중이에요"]
+}
+
 
 enum TamagotchiMessageList {
     
@@ -61,5 +68,6 @@ enum TamagotchiMessageList {
         
     ]
     
+
     
 }
