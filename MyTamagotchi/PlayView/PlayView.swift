@@ -139,21 +139,15 @@ final class PlayView: BaseView {
  
         talkIamgeView.image = UIImage(resource: .bubble)
         tamagotchiImage.image = ImageSet.tamagotchiImageList[0][0]
-        title.text = "123213123"
+        title.text = TamagotchiName.nameTitle[UserDefaultManager.character]
         
-        descriptionLabel.text = """
-                                dsamkldnmakldmsaklmdskalmdksla
-                                dmsakldmsakldmsaklmdkslmdkals
-                                dmsakldmsakldmsaklmdkslmdkals
-                                """
+      //  descriptionLabel.text = "\(TamagotchiMessageList.messageList.randomElement()!) 대장님"
                                 
         
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
         
-        levelLabel.text = "123"
-        waterLabel.text = "123"
-        riceLabel.text = "123"
+        
         
         dotLabel.text = "⋅"
         dot2Label.text = "⋅"

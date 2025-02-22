@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingCollectionViewCell: BaseCollectionViewCell {
+final class SettingCollectionViewCell: BaseCollectionViewCell {
     
     static let id = "SettingCollectionViewCell"
     
