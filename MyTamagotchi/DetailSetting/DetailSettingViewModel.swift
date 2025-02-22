@@ -14,6 +14,7 @@ import RxCocoa
 final class DetailSettingViewModel: BaseViewModel {
     
     struct Input {
+        let viewDidLoad: Observable<()>
         let seletecd: SharedSequence<DriverSharingStrategy, IndexPath>
         let confirm: PublishSubject<Void>
     }
@@ -27,12 +28,15 @@ final class DetailSettingViewModel: BaseViewModel {
 
     
     var tableViewData: [TableViewInfo] = []
-    
     let disposeBag = DisposeBag()
+    
+    
+    var tamagotchiName: String?
+    
     
     init() {
         print("DetailSettingViewModel Init")
-        loadData()
+
     }
     
     func transform(input: Input) -> Output {
@@ -42,6 +46,15 @@ final class DetailSettingViewModel: BaseViewModel {
         let changedTamagotchi = PublishRelay<String>()
         let resetData = PublishRelay<[String]>()
          
+        input.viewDidLoad.bind(with: self) { owner, _ in
+            
+            owner.loadData()
+            
+            print(owner.tableViewData)
+            data.accept(owner.tableViewData)
+        }.disposed(by: disposeBag)
+        
+        
         input.confirm.bind(with: self) { owner, _ in
             print("확인 버튼 클릭됨")
             
@@ -53,8 +66,7 @@ final class DetailSettingViewModel: BaseViewModel {
             switch indexPath.row {
             case 0:
                 changedName.accept("텍스트")
-                
-                
+                            
             case 1:
                 changedTamagotchi.accept("텍스트")
             case 2:
@@ -93,8 +105,14 @@ extension DetailSettingViewModel {
     private func loadData() {
         
         let title: [String] = ["내 이름 설정하기", "다마고치 변경하기", "데이터 초기화"]
-        let subTitle: [String] = ["테스트입니다.", "", ""]
+        var subTitle: [String] = ["", "", ""]
         let image: [String] = ["pencil", "moon.fill", "arrow.clockwise"]
+        
+        if let name = tamagotchiName {
+            subTitle[0] = name
+        }
+        
+
         
         for i in 0..<title.count {
             let info = TableViewInfo(title: title[i], subtitle: subTitle[i], image: image[i])

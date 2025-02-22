@@ -49,7 +49,7 @@ final class PlayViewController: UIViewController {
     private func bind() {
         
         
-        let input = PlayViewModel.Input(rice: playView.riceButton.rx.tap.withLatestFrom(playView.riceTextField.rx.text.orEmpty), water: playView.waterButton.rx.tap.withLatestFrom(playView.waterTextField.rx.text.orEmpty), profileButtonTapped: rightButton.rx.tap)
+        let input = PlayViewModel.Input(rice: playView.riceButton.rx.tap.withLatestFrom(playView.riceTextField.rx.text.orEmpty), water: playView.waterButton.rx.tap.withLatestFrom(playView.waterTextField.rx.text.orEmpty), profileButtonTapped: rightButton.rx.tap.asDriver())
 
         let output = viewModel.transform(input: input)
         
@@ -78,27 +78,22 @@ final class PlayViewController: UIViewController {
         }.disposed(by: disposeBag)
     
         
+        output.profileButtonTapped.asDriver(onErrorJustReturn: "").drive(with: self) { owner, name in
+            
+            let vc = DetailSettingViewController()
+         
+            
+            vc.viewModel.tamagotchiName = name
+            owner.navigationController?.pushViewController(vc, animated: true)
+            
+        }.disposed(by: disposeBag)
         
         
     }
     
     private func configurationNavigation() {
-   
-     
         navigationItem.backButtonTitle = ""
         navigationItem.rightBarButtonItem = rightButton
-        
-        let a = rightButton.rx.tap.asDriver()
-        
-        rightButton.rx.tap.bind(with: self) { owner, _ in
-            
-            let vc = DetailSettingViewController()
-            
-            
-            owner.navigationController?.pushViewController(vc, animated: true)
-            
-            
-        }.disposed(by: disposeBag)
     }
 
 }

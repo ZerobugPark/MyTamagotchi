@@ -94,6 +94,7 @@ final class PlayViewModel: BaseViewModel {
         
         
         input.profileButtonTapped.drive(with: self) { owner, _ in
+           
             buttonTap.accept(owner.myTamagotchi.0)
         }.disposed(by: disposeBag)
         
