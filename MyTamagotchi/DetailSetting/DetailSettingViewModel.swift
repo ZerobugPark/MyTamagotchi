@@ -14,20 +14,22 @@ import RxCocoa
 class DetailSettingViewModel: BaseViewModel {
     
     struct Input {
-        
+        let seletecd: SharedSequence<DriverSharingStrategy, IndexPath>
+        let confirm: PublishSubject<Void>
     }
     
     struct Output {
         let data: BehaviorRelay<[TableViewInfo]>
-        
+        let changedName: PublishRelay<String>
+        let changedTamagotchi: PublishRelay<String>
+        let resetData: PublishRelay<[String]>
     }
 
-  
-    
     
     var tableViewData: [TableViewInfo] = []
     
-
+    let disposeBag = DisposeBag()
+    
     init() {
         print("DetailSettingViewModel Init")
         loadData()
@@ -36,9 +38,37 @@ class DetailSettingViewModel: BaseViewModel {
     func transform(input: Input) -> Output {
      
         let data = BehaviorRelay(value: tableViewData)
+        let changedName = PublishRelay<String>()
+        let changedTamagotchi = PublishRelay<String>()
+        let resetData = PublishRelay<[String]>()
          
+        input.confirm.bind(with: self) { owner, _ in
+            print("확인 버튼 클릭됨")
+            
+            
+        }.disposed(by: disposeBag)
+        
+        input.seletecd.drive(with: self) { owner, indexPath in
+            
+            switch indexPath.row {
+            case 0:
+                changedName.accept("텍스트")
+                
+            case 1:
+                changedTamagotchi.accept("텍스트")
+            case 2:
+                let title = "데이터 초기화"
+                let msg = "정말 다시 처음부터 시작하실 건가요"
+                resetData.accept([title, msg])
+            default:
+                print("")
+            }
+            
+        }.disposed(by: disposeBag)
+        
+        
 
-        return Output(data: data)
+        return Output(data: data, changedName: changedName, changedTamagotchi: changedTamagotchi, resetData: resetData)
     }
                 
   

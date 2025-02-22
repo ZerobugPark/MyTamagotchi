@@ -44,12 +44,16 @@ class DetailSettingViewController: UIViewController {
     }
     
     private func bind() {
-        let input = DetailSettingViewModel.Input()
-        let output = viewModel.transform(input: input)
         
+        let comfirm = PublishSubject<Void>()
+        
+        let input = DetailSettingViewModel.Input(seletecd: detailView.tableView.rx.itemSelected.asDriver(),
+                                                 confirm: comfirm)
+        let output = viewModel.transform(input: input)
+
       
         output.data.asDriver(onErrorJustReturn: []).drive(detailView.tableView.rx.items(cellIdentifier: "DetailSettingCell", cellType: UITableViewCell.self)) { row, element, cell in
-            // 셀 스타일 설정
+
             
             cell.textLabel?.text = element.title
             cell.textLabel?.textColor = TamagotchiColor.basic
@@ -65,15 +69,29 @@ class DetailSettingViewController: UIViewController {
             
         }.disposed(by: disposeBag)
 
-
-
-        detailView.tableView.rx.itemSelected.bind(with: self) { onwer, test in
-            print(test)
-        }.disposed(by: disposeBag)
         
-  
+        output.resetData.asDriver(onErrorJustReturn: []).drive(with: self) { owner, value in
+            
+            let alert = UIAlertController(title: value[0], message: value[1], preferredStyle: .alert)
+            let ok = UIAlertAction(title: "웅", style: .destructive) { _ in
+                comfirm.onNext(())
+                
+                
+                print("화면전환")
+            }
+            let cancle = UIAlertAction(title: "아냐!", style: .cancel)
+            
+        
+            
+            alert.addAction(ok)
+            alert.addAction(cancle)
+            
+            owner.present(alert,animated: true)
+            
+            
+        }.disposed(by: disposeBag)
      
-
+        
           
     }
 
@@ -91,5 +109,13 @@ class DetailSettingViewController: UIViewController {
 
 extension DetailSettingViewController {
     
+    private func resetData() -> Observable<String> {
+        return Observable.create { value in
+            
+            value.onNext("")
+            
+            return Disposables.create()
+        }
+    }
     
 }
