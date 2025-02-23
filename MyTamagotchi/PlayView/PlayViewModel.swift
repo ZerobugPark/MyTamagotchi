@@ -98,6 +98,23 @@ final class PlayViewModel: BaseViewModel {
             buttonTap.accept(owner.myTamagotchi.0)
         }.disposed(by: disposeBag)
         
+        
+        NotificationCenter.default.rx.notification(.nickName).compactMap {
+            $0.userInfo?["nickname"] as? String}
+        .asDriver(onErrorJustReturn: "").drive(with: self) { owner, name in
+            
+            
+            owner.myTamagotchi.0 = name
+        
+            let character = UserDefaultManager.character
+            UserDefaultManager.characterName[character][0] = name
+            
+            let sendData  = owner.tamagotchiInfo()
+            myTamagotchiInfo.accept(sendData)
+            
+        }.disposed(by: disposeBag)
+        
+        
 
         return Output(myTamagotchi: myTamagotchiInfo, errorMessage: errorMsg, profileButtonTapped: buttonTap)
     }
@@ -143,7 +160,7 @@ extension PlayViewModel {
         let character = UserDefaultManager.character
         let riceCount = UserDefaultManager.characterInfo[character][0]
         let waterCount = UserDefaultManager.characterInfo[character][1]
-        let name = UserDefaultManager.characterName[character]
+        let name = UserDefaultManager.characterName[character][0]
         
         
   
@@ -182,6 +199,8 @@ extension PlayViewModel {
     }
     
     private func randomMessage(name: String) -> String {
+        
+
         
         let randomNumber = Int.random(in: 0...TamagotchiMessageList.messageList.count-1)
         

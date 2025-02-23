@@ -23,7 +23,7 @@ class ChangeTamagotchiViewController: UIViewController {
 
     override func loadView() {
         view = settingView
-  
+        
     }
     
     
@@ -31,7 +31,7 @@ class ChangeTamagotchiViewController: UIViewController {
         super.viewDidLoad()
 
         settingView.collectionView.register(SettingCollectionViewCell.self, forCellWithReuseIdentifier: SettingCollectionViewCell.id)
-        
+        navigationItem.title = "다마고치 선택하기"
         bind()
     }
     
@@ -54,7 +54,7 @@ class ChangeTamagotchiViewController: UIViewController {
         
  
         output.tamagotchiInfo.bind(with: self) { owner, value in
-            let vc = PopupViewController()
+            let vc = ChangePopupViewController()
             vc.viewModel.tamagotchiInfo = value
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve

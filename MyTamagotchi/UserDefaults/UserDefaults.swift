@@ -38,10 +38,12 @@ enum UserDefaultManager {
     @TamagotchiManager(key: Key.character.rawValue, empty: 0)
     static var character
     
-    @TamagotchiManager(key: Key.characterInfo.rawValue, empty: [[0,0]])
+    // rice, water
+    @TamagotchiManager(key: Key.characterInfo.rawValue, empty: [[0,0], [0,0], [0,0]])
     static var characterInfo
     
-    @TamagotchiManager(key: Key.characterName.rawValue, empty: ["대장"])
+    
+    @TamagotchiManager(key: Key.characterName.rawValue, empty: [["대장"],["대장"],["대장"]])
     static var characterName
     
 }

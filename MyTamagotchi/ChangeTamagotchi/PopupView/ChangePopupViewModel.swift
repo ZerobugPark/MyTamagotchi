@@ -15,7 +15,7 @@ final class ChangePopupViewModel: BaseViewModel {
     
     
     struct Input {
-        
+        let changeTamagotchi: PublishRelay<Void>
     }
     
     struct Output {
@@ -25,7 +25,7 @@ final class ChangePopupViewModel: BaseViewModel {
 
     var tamagotchiInfo: (TamagotchiInfo, Bool)?
     
-    
+    private let disposeBag = DisposeBag()
 
     init() {
         print("ChangePopupViewModel Init")
@@ -34,6 +34,13 @@ final class ChangePopupViewModel: BaseViewModel {
     func transform(input: Input) -> Output {
      
         let info = getInfo(info: tamagotchiInfo)
+        
+        input.changeTamagotchi.asDriver(onErrorJustReturn: ()).drive(with: self) { owner, _ in
+            
+            UserDefaultManager.character = owner.tamagotchiInfo!.0.character
+
+            
+        }.disposed(by: disposeBag)
         
         return Output(info: info)
     }

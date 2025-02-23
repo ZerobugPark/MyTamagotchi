@@ -18,6 +18,9 @@ class ChangePopupViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    private let changeTamagotchi = PublishRelay<Void>()
+    
+    
     override func loadView() {
         view = popupView
     }
@@ -26,6 +29,8 @@ class ChangePopupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        
+        popupView.confirmButton.setTitle("변경하기", for: .normal)
        
    
         
@@ -33,7 +38,8 @@ class ChangePopupViewController: UIViewController {
     
     private func bind() {
         
-        let input = ChangePopupViewModel.Input()
+        let input = ChangePopupViewModel.Input(changeTamagotchi: changeTamagotchi)
+        
         let output = viewModel.transform(input: input)
         
         output.info
@@ -49,9 +55,16 @@ class ChangePopupViewController: UIViewController {
         popupView.confirmButton.rx.tap.bind(with: self) { owner, _ in
             
        
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let window = windowScene.windows.first else { return }
+            
+            owner.changeTamagotchi.accept(())
+            
+            window.rootViewController = UINavigationController(rootViewController: PlayViewController())
+            window.makeKeyAndVisible()
+            
         }.disposed(by: disposeBag)
             
-            
+
             
      
         popupView.cancelButton.rx.tap.bind(with: self) { owner, _ in
