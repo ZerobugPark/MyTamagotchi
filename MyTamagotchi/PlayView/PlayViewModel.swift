@@ -96,7 +96,7 @@ final class PlayViewModel: BaseViewModel {
                     return
                 }
                 
-                let sendData  = owner.tamagotchiInfo(rice: water)
+                let sendData  = owner.tamagotchiInfo(water: water)
                 myTamagotchiInfo.accept(sendData)
                 waterTextFieldClear.accept(())
             } else {
