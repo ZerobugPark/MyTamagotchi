@@ -11,8 +11,8 @@ final class SettingCollectionViewCell: BaseCollectionViewCell {
     
     static let id = "SettingCollectionViewCell"
     
-    let tamagotchiImage = CustomImageView()
-    let title = CustomLabel(boldStyle: true, fontSize: 13)
+    private let tamagotchiImage = CustomImageView()
+    private let title = CustomLabel(boldStyle: true, fontSize: 13)
     
     override func configureHierarchy() {
         contentView.addSubview(tamagotchiImage)

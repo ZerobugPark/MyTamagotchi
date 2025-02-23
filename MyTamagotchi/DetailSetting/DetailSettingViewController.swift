@@ -29,7 +29,7 @@ final class DetailSettingViewController: UIViewController {
         view = detailView
     }
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,28 +37,14 @@ final class DetailSettingViewController: UIViewController {
         configurationNavigation()
         bind()
         
-    
-        
-
-        
     }
-    
-    @objc func youngReceivedNotification(notification: NSNotification) { //파라미터에 값을 넣어주기 (userinfo 데이터가 파라미터에 들어감)
-        
-        if let name = notification.userInfo!["nickname"] as? String {
-            print(name)
-            
-        }
-        
-        
-    }
-
     
     private func bind() {
         
         let comfirmButton = PublishSubject<Void>()
         
-        let input = DetailSettingViewModel.Input(viewDidLoad: Observable.just(()), seletecd: detailView.tableView.rx.itemSelected.asDriver(),
+        let input = DetailSettingViewModel.Input(viewDidLoad: Observable.just(()),
+                                                 seletecd: detailView.tableView.rx.itemSelected.asDriver(),
                                                  confirm: comfirmButton)
         
         let output = viewModel.transform(input: input)

@@ -67,7 +67,7 @@ final class ChangeNameViewController: UIViewController {
 
 extension ChangeNameViewController {
     
-    func configuration() {
+    private func configuration() {
         
         view.addSubview(nameTextField)
         view.addSubview(lineView)

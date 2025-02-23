@@ -40,7 +40,7 @@ final class PlayViewModel: BaseViewModel {
     private var myTamagotchi: (String, String, String, String, String, (Int,Int)) = ("", "", "", "", "", ((0, 0)))
     
     init() {
-        print("PlayViewModel DeInit")
+        print("PlayViewModel Init")
         loadData()
     }
     

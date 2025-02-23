@@ -19,7 +19,7 @@ final class PlayViewController: UIViewController {
     
     private let viewModel = PlayViewModel()
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
    
     let rightButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: nil, action: nil)
@@ -49,7 +49,9 @@ final class PlayViewController: UIViewController {
     private func bind() {
         
         
-        let input = PlayViewModel.Input(rice: playView.riceButton.rx.tap.withLatestFrom(playView.riceTextField.rx.text.orEmpty), water: playView.waterButton.rx.tap.withLatestFrom(playView.waterTextField.rx.text.orEmpty), profileButtonTapped: rightButton.rx.tap.asDriver())
+        let input = PlayViewModel.Input(rice: playView.riceButton.rx.tap.withLatestFrom(playView.riceTextField.rx.text.orEmpty),
+                                        water: playView.waterButton.rx.tap.withLatestFrom(playView.waterTextField.rx.text.orEmpty),
+                                        profileButtonTapped: rightButton.rx.tap.asDriver())
 
         let output = viewModel.transform(input: input)
         

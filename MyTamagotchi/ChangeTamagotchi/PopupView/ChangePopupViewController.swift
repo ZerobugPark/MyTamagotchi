@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ChangePopupViewController: UIViewController {
+final class ChangePopupViewController: UIViewController {
 
     private let popupView = PopupView()
     

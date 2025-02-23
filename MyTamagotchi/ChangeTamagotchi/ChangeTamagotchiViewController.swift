@@ -11,13 +11,13 @@ import RxSwift
 import RxCocoa
 
 
-class ChangeTamagotchiViewController: UIViewController {
+final class ChangeTamagotchiViewController: UIViewController {
 
     private let settingView = SettingView()
     private let viewModel = ChangeTamagotchiViewModel()
     
 
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     
 

@@ -27,7 +27,7 @@ final class SettingViewModel: BaseViewModel {
     private var originalData: [Tamagotchi] = []
 
 
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     init() {
         print("SettingViewModel Init")

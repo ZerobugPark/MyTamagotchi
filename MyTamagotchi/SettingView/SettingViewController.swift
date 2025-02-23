@@ -17,7 +17,7 @@ final class SettingViewController: UIViewController {
     private let viewModel = SettingViewModel()
     
 
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     
 

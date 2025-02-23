@@ -28,10 +28,10 @@ final class DetailSettingViewModel: BaseViewModel {
 
     
     var tableViewData: [TableViewInfo] = []
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     
-    var tamagotchiName: String?
+    var tamagotchiName = ""
     
     
     init() {
@@ -67,7 +67,7 @@ final class DetailSettingViewModel: BaseViewModel {
             
             switch indexPath.row {
             case 0:
-                changedName.accept(owner.tamagotchiName!)
+                changedName.accept(owner.tamagotchiName)
                             
             case 1:
                 changedTamagotchi.accept("텍스트")
@@ -120,12 +120,9 @@ extension DetailSettingViewModel {
         var subTitle: [String] = ["", "", ""]
         let image: [String] = ["pencil", "moon.fill", "arrow.clockwise"]
         
-        if let name = tamagotchiName {
-            subTitle[0] = name
-        }
-        
+        subTitle[0] = tamagotchiName
+    
 
-        
         for i in 0..<title.count {
             let info = TableViewInfo(title: title[i], subtitle: subTitle[i], image: image[i])
             tableViewData.append(info)

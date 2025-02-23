@@ -25,7 +25,7 @@ final class ChangeNameViewModel: BaseViewModel {
     var tamagotchiName: String = ""
 
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     init() {
         print("ChangeNameViewModel Init")

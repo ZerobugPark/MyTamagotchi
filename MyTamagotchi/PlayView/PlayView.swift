@@ -14,10 +14,10 @@ final class PlayView: BaseView {
     private let talkIamgeView = UIImageView()
     private let lineView = CustomView(color: TamagotchiColor.basic)
     private let subLineView = CustomView(color: TamagotchiColor.basic)
-    
+    private let title = CustomLabel(boldStyle: true, fontSize: 15)
     
     let tamagotchiImage = CustomImageView()
-    let title = CustomLabel(boldStyle: true, fontSize: 15)
+    
     let levelLabel = CustomLabel(boldStyle: true)
     let riceLabel = CustomLabel(boldStyle: true)
     let waterLabel = CustomLabel(boldStyle: true)
