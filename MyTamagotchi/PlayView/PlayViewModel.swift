@@ -18,6 +18,7 @@ final class PlayViewModel: BaseViewModel {
     struct Input {
         let rice: Observable<ControlProperty<String>.Element>
         let water: Observable<ControlProperty<String>.Element>
+            
         let profileButtonTapped: SharedSequence<DriverSharingStrategy, ()>
     }
     
@@ -56,48 +57,58 @@ final class PlayViewModel: BaseViewModel {
         input.rice.bind(with: self) { owner, str in
             let maxRice = 99
             
-            guard let rice = Int(str) else {
-                let msg = "숫자만 입력해주세요"
-                errorMsg.accept(msg)
-                return
+            if !str.isEmpty {
+                guard let rice = Int(str) else {
+                    let msg = "숫자만 입력해주세요"
+                    errorMsg.accept(msg)
+                    return
+                }
+                if rice > maxRice {
+                    let msg = "최대 99개입니다."
+                    errorMsg.accept(msg)
+                    return
+                }
+                let sendData  = owner.tamagotchiInfo(rice: rice)
+                myTamagotchiInfo.accept(sendData)
+                riceTextFieldClear.accept(())
+            } else {
+                let sendData  = owner.tamagotchiInfo(rice: 1)
+                myTamagotchiInfo.accept(sendData)
+                riceTextFieldClear.accept(())
             }
             
-            if rice > maxRice {
-                let msg = "최대 99개입니다."
-                errorMsg.accept(msg)
-                return
-            }
-
-            
-            let sendData  = owner.tamagotchiInfo(rice: rice)
-            myTamagotchiInfo.accept(sendData)
-            riceTextFieldClear.accept(())
                                                  
         }.disposed(by: disposeBag)
         
         input.water.bind(with: self) { owner, str in
             let maxWater = 49
             
-            guard let water = Int(str) else {
-                let msg = "숫자만 입력해주세요"
-                errorMsg.accept(msg)
-                return
-            }
-            
-            if water > maxWater {
-                let msg = "최대 49개입니다."
-                errorMsg.accept(msg)
-                return
+            if !str.isEmpty {
+                guard let water = Int(str) else {
+                    let msg = "숫자만 입력해주세요"
+                    errorMsg.accept(msg)
+                    return
+                }
+                
+                if water > maxWater {
+                    let msg = "최대 49개입니다."
+                    errorMsg.accept(msg)
+                    return
+                }
+                
+                let sendData  = owner.tamagotchiInfo(rice: water)
+                myTamagotchiInfo.accept(sendData)
+                waterTextFieldClear.accept(())
+            } else {
+                let sendData  = owner.tamagotchiInfo(water: 1)
+                myTamagotchiInfo.accept(sendData)
+                waterTextFieldClear.accept(())
             }
             
 
-            
-            let sendData  = owner.tamagotchiInfo(water: water)
-            myTamagotchiInfo.accept(sendData)
-            waterTextFieldClear.accept(())
         }.disposed(by: disposeBag)
-        
-        
+    
+
         
         input.profileButtonTapped.drive(with: self) { owner, _ in
            

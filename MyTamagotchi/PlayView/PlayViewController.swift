@@ -55,6 +55,8 @@ final class PlayViewController: UIViewController {
 
         let output = viewModel.transform(input: input)
         
+        
+   
             
         output.myTamagotchi.asDriver().drive(with: self) { owner, value in
             
