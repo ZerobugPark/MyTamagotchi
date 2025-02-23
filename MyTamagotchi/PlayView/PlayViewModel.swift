@@ -25,6 +25,8 @@ final class PlayViewModel: BaseViewModel {
         let myTamagotchi: BehaviorRelay<(String, String, String, String, String, (Int, Int))>
         let errorMessage: PublishRelay<String>
         let profileButtonTapped: PublishRelay<String>
+        let riceTextFieldClear: PublishRelay<Void>
+        let waterTextFieldClear: PublishRelay<Void>
     }
 
     
@@ -47,6 +49,9 @@ final class PlayViewModel: BaseViewModel {
         let myTamagotchiInfo = BehaviorRelay(value: myTamagotchi)
         let errorMsg = PublishRelay<String>()
         let buttonTap = PublishRelay<String>()
+        
+        let riceTextFieldClear = PublishRelay<()>()
+        let waterTextFieldClear = PublishRelay<()>()
 
         input.rice.bind(with: self) { owner, str in
             let maxRice = 99
@@ -66,6 +71,7 @@ final class PlayViewModel: BaseViewModel {
             
             let sendData  = owner.tamagotchiInfo(rice: rice)
             myTamagotchiInfo.accept(sendData)
+            riceTextFieldClear.accept(())
                                                  
         }.disposed(by: disposeBag)
         
@@ -88,7 +94,7 @@ final class PlayViewModel: BaseViewModel {
             
             let sendData  = owner.tamagotchiInfo(water: water)
             myTamagotchiInfo.accept(sendData)
-            
+            waterTextFieldClear.accept(())
         }.disposed(by: disposeBag)
         
         
@@ -116,7 +122,7 @@ final class PlayViewModel: BaseViewModel {
         
         
 
-        return Output(myTamagotchi: myTamagotchiInfo, errorMessage: errorMsg, profileButtonTapped: buttonTap)
+        return Output(myTamagotchi: myTamagotchiInfo, errorMessage: errorMsg, profileButtonTapped: buttonTap, riceTextFieldClear: riceTextFieldClear,waterTextFieldClear: waterTextFieldClear)
     }
                 
   

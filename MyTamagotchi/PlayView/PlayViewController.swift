@@ -78,6 +78,18 @@ final class PlayViewController: UIViewController {
         }.disposed(by: disposeBag)
     
         
+        output.riceTextFieldClear.asDriver(onErrorJustReturn: ())
+            .drive(with: self) { owner, _ in
+                owner.playView.riceTextField.text = ""
+                owner.view.endEditing(true)
+            }.disposed(by: disposeBag)
+        
+        output.waterTextFieldClear.asDriver(onErrorJustReturn: ())
+            .drive(with: self) { owner, _ in
+                owner.playView.waterTextField.text = ""
+                owner.view.endEditing(true)
+            }.disposed(by: disposeBag)
+        
         output.profileButtonTapped.asDriver(onErrorJustReturn: "").drive(with: self) { owner, name in
             
             let vc = DetailSettingViewController()

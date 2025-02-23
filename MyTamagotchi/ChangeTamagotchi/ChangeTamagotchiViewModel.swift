@@ -96,7 +96,7 @@ extension ChangeTamagotchiViewModel {
         var imageIndex = [8,8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
    
         
-        for i in 0..<2 {
+        for i in 0...2 {
             let riceCount = UserDefaultManager.characterInfo[i][0]
             let waterCount = UserDefaultManager.characterInfo[i][1]
             let level = calculatorTamagotchiLevel(riceCount: riceCount, waterCount: waterCount)
