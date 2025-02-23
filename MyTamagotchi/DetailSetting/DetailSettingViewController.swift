@@ -37,8 +37,22 @@ final class DetailSettingViewController: UIViewController {
         configurationNavigation()
         bind()
         
+    
+        
+
         
     }
+    
+    @objc func youngReceivedNotification(notification: NSNotification) { //파라미터에 값을 넣어주기 (userinfo 데이터가 파라미터에 들어감)
+        
+        if let name = notification.userInfo!["nickname"] as? String {
+            print(name)
+            
+        }
+        
+        
+    }
+
     
     private func bind() {
         
@@ -74,44 +88,16 @@ final class DetailSettingViewController: UIViewController {
             }.disposed(by: disposeBag)
         
         
-        output.changedName.asDriver(onErrorJustReturn: "").drive(with: self) { owner, value in
+        output.changedName.asDriver(onErrorJustReturn: "").drive(with: self) { owner, name in
             let vc = ChangeNameViewController()
+            
+            vc.viewModel.tamagotchiName = name
             
             owner.navigationController?.pushViewController(vc, animated: true)
             
         }.disposed(by: disposeBag)
         
         
-        
-        
-        //        output.data.asDriver(onErrorJustReturn: []).drive(detailView.tableView.rx.items(cellIdentifier: "DetailSettingCell", cellType: UITableViewCell.self)) { row, element, cell in
-        //
-        //            print(element.subtitle)
-        //
-        //            cell.textLabel?.text = element.title
-        //            cell.textLabel?.textColor = TamagotchiColor.basic
-        //
-        //
-        //
-        //            cell.detailTextLabel?.text = element.subtitle
-        //            cell.detailTextLabel?.textColor = TamagotchiColor.basic
-        //
-        //            cell.backgroundColor = TamagotchiColor.background
-        //            cell.tintColor = TamagotchiColor.basic
-        //
-        //            cell.accessoryType = .disclosureIndicator
-        //            cell.selectionStyle = .none // 하이라이트 제거
-        //
-        //        }.disposed(by: disposeBag)
-        //
-        //
-        //        output.changedName.asDriver(onErrorJustReturn: "").drive(with: self) { owner, value in
-        //            let vc = ChangeNameViewController()
-        //
-        //            owner.navigationController?.pushViewController(vc, animated: true)
-        //
-        //        }.disposed(by: disposeBag)
-        //
         
         output.changedTamagotchi.asDriver(onErrorJustReturn: "").drive(with: self) { owner, value in
             
@@ -126,10 +112,14 @@ final class DetailSettingViewController: UIViewController {
             
             let alert = UIAlertController(title: value[0], message: value[1], preferredStyle: .alert)
             let ok = UIAlertAction(title: "웅", style: .destructive) { _ in
+        
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let window = windowScene.windows.first else { return }
+        
                 comfirmButton.onNext(())
                 
-                
-                print("화면전환")
+                window.rootViewController = UINavigationController(rootViewController: SettingViewController())
+                window.makeKeyAndVisible()
+ 
             }
             let cancle = UIAlertAction(title: "아냐!", style: .cancel)
             

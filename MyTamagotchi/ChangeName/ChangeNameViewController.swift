@@ -19,7 +19,9 @@ final class ChangeNameViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    var viewModel = ChangeNameViewModel()
     
+    private let rightButton = UIBarButtonItem(title: "저장", style: .plain, target: nil, action: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,6 @@ final class ChangeNameViewController: UIViewController {
         
         configurationNavigation()
         view.backgroundColor = TamagotchiColor.background
-        nameTextField.text = "테스트입니다"
         
         bind()
     }
@@ -36,24 +37,29 @@ final class ChangeNameViewController: UIViewController {
     
     private func bind() {
      
+        let input = ChangeNameViewModel.Input(saveButtonTapped: rightButton.rx.tap.withLatestFrom(nameTextField.rx.text.orEmpty).distinctUntilChanged())
+        
+        let output = viewModel.transform(input: input)
         
         
+        output.tamagotchiName
+            .bind(to: nameTextField.rx.text)
+            .disposed(by: disposeBag)
         
-        nameTextField.rx.controlEvent(.editingDidBegin).bind(with: self) { owner, _ in
-            owner.nameTextField.text = ""
+        output.saveButtonTapped.asDriver(onErrorJustReturn: ()).drive(with: self) { owner, _ in
+            
+            owner.navigationController?.popViewController(animated: true)
+            
         }.disposed(by: disposeBag)
-        
-        
+            
+   
         
         
     }
 
   
     private func configurationNavigation() {
-        
-        let rightButton = UIBarButtonItem(title: "저장", style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = rightButton
-        
     }
 
 }

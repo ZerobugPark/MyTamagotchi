@@ -36,7 +36,7 @@ final class DetailSettingViewModel: BaseViewModel {
     
     init() {
         print("DetailSettingViewModel Init")
-
+    
     }
     
     func transform(input: Input) -> Output {
@@ -50,13 +50,15 @@ final class DetailSettingViewModel: BaseViewModel {
             
             owner.loadData()
             
-            print(owner.tableViewData)
             data.accept(owner.tableViewData)
         }.disposed(by: disposeBag)
         
         
         input.confirm.bind(with: self) { owner, _ in
-            print("확인 버튼 클릭됨")
+        
+            for key in UserDefaults.standard.dictionaryRepresentation().keys {
+                UserDefaults.standard.removeObject(forKey: key.description)
+            }
             
             
         }.disposed(by: disposeBag)
@@ -65,7 +67,7 @@ final class DetailSettingViewModel: BaseViewModel {
             
             switch indexPath.row {
             case 0:
-                changedName.accept("텍스트")
+                changedName.accept(owner.tamagotchiName!)
                             
             case 1:
                 changedTamagotchi.accept("텍스트")
@@ -77,6 +79,16 @@ final class DetailSettingViewModel: BaseViewModel {
                 print("")
             }
             
+        }.disposed(by: disposeBag)
+        
+        
+        NotificationCenter.default.rx.notification(.nickName).compactMap {
+            $0.userInfo?["nickname"] as? String}
+        .asDriver(onErrorJustReturn: "").drive(with: self) { owner, text in
+            
+            
+            owner.tableViewData[0].subtitle = text
+            data.accept(owner.tableViewData)
         }.disposed(by: disposeBag)
         
         
@@ -97,7 +109,7 @@ extension DetailSettingViewModel {
     
     struct TableViewInfo {
         let title: String
-        let subtitle: String
+        var subtitle: String
         let image: String
         
     }
@@ -121,3 +133,4 @@ extension DetailSettingViewModel {
     }
     
 }
+

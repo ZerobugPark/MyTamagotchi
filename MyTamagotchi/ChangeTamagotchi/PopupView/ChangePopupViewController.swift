@@ -27,6 +27,8 @@ class ChangePopupViewController: UIViewController {
         super.viewDidLoad()
         bind()
        
+   
+        
     }
     
     private func bind() {
@@ -58,7 +60,6 @@ class ChangePopupViewController: UIViewController {
             
         }.disposed(by: disposeBag)
     }
-
 
     
     
